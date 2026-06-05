@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CurrencyConverterMaterialPage extends StatelessWidget{
@@ -30,29 +31,84 @@ class CurrencyConverterMaterialPage extends StatelessWidget{
   //         ],
   //       )
   //     ),
+
+  //decoration
+  //  decoration: InputDecoration(
+  //                 label: Text('Please Enter Amount In USD', style: TextStyle(
+  //                   color: Colors.white,)
+  //                 ),
+  //               ),
   Widget build(BuildContext context){
-    return const Scaffold(
+    final border = OutlineInputBorder(
+      //Color(0xAARRGGBB)
+      borderSide: const BorderSide(
+        width: 2.0,
+        style: BorderStyle.solid,
+      ),
+      borderRadius: BorderRadius.all(Radius.circular(5),),
+   );
+    return Scaffold(
       backgroundColor: Colors.blueGrey,
       body:  Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 '0',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 55,
                   fontWeight: FontWeight.bold,//bold--w700, normal--w400
                   color: Color.fromARGB(255, 255, 255, 255)
                 ),
               ),
-              TextField(
-                style: TextStyle(
-                  color: Colors.white //change color of typed text
-                ),
-                decoration: InputDecoration(
-                  
+              // Container(
+              //   padding: const EdgeInsets.all(10),
+              //   margin: const EdgeInsets.all(10),
+              //   color: Colors.black,
+              //   child: const Text(
+              //     '0',
+              //     style: const TextStyle(
+              //       fontSize: 55,
+              //       fontWeight: FontWeight.bold,//bold--w700, normal--w400
+              //       color: Color.fromARGB(255, 255, 255, 255)
+              //     ),
+              //   ),
+              // ),
+              //padding== select TextField-->Ctrl+Shift+R-->wrap with padding
+              //container
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  style: TextStyle(
+                    color: Colors.black //change color of typed text
+                  ),
+                  decoration: InputDecoration(
+                    hintText: 'Please Enter Amount In USD',
+                    hintStyle: TextStyle(
+                      color: Colors.black,
+                    ),
+                    prefixIcon: const Icon(Icons.monetization_on_outlined),
+                    prefixIconColor: Colors.black,// sufix also present
+                    filled: true,
+                    fillColor: Colors.white,
+                    focusedBorder: border,
+                    enabledBorder: border,
+                  ),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                 ),
               ),
+              //BUTTON(2 types)---> 1. raised 2. appears like a text
+              TextButton(onPressed: () {
+                //debug, release, profile
+                if (kDebugMode){
+                  print('BUTTON CLICKED');
+                }
+              },
+              style: ButtonStyle(),
+               child: Text('Convert'),
+               ),
             ],
           )
       ),
