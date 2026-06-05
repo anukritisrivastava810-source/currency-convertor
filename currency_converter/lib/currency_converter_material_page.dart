@@ -49,6 +49,11 @@ class CurrencyConverterMaterialPage extends StatelessWidget{
    );
     return Scaffold(
       backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        title: const Text('CURRENCY CONVERTER', style: TextStyle(color: Colors.black),),
+        centerTitle: true,
+      ),
       body:  Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -100,15 +105,26 @@ class CurrencyConverterMaterialPage extends StatelessWidget{
                 ),
               ),
               //BUTTON(2 types)---> 1. raised 2. appears like a text
-              TextButton(onPressed: () {
-                //debug, release, profile
-                if (kDebugMode){
-                  print('BUTTON CLICKED');
-                }
-              },
-              style: ButtonStyle(),
-               child: Text('Convert'),
-               ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ElevatedButton(onPressed: () {
+                  //debug, release, profile
+                  if (kDebugMode){
+                    print('BUTTON CLICKED');
+                  }
+                },
+                style: ButtonStyle(
+                  elevation: MaterialStatePropertyAll(15),
+                  backgroundColor: MaterialStatePropertyAll(Colors.black),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
+                  minimumSize: MaterialStatePropertyAll(Size(double.infinity, 50),),
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  )),
+                ),
+                 child: Text('Convert'),
+                 ),
+              ),
             ],
           )
       ),
